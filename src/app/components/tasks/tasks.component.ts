@@ -24,10 +24,7 @@ export class TasksComponent implements OnInit {
 
   toggleTask(task: Task) {
     this.taskService.toggleTask(task).subscribe(() => {
-      const tasks = this.tasks.map(current =>
-        current.id === task.id ? { ...current, reminder: !current.reminder } : current
-      );  
-      this.tasks = tasks;
+      task.reminder = !task.reminder
     });
   }
 }
