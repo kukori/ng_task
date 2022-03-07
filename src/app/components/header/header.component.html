@@ -1,4 +1,4 @@
 <header>
     <h1>Task Tracker</h1>
-    <app-button color="black" text="{{showAddTask ? 'Close' : 'Add'}}" (buttonClick)="toggleAddTask()"></app-button>
+    <app-button *ngIf="!hasRoute('/about')" color="black" text="{{showAddTask ? 'Close' : 'Add'}}" (buttonClick)="toggleAddTask()"></app-button>
 </header>
