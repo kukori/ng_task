@@ -4,6 +4,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { appReducer } from './ngrx/app.reducer';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -30,7 +32,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({ showAddTask: appReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

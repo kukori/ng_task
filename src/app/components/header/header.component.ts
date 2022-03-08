@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { UiService } from 'src/app/services/ui.service';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { toggle } from '../../ngrx/app.actions';
 
 @Component({
   selector: 'app-header',
@@ -9,20 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  showAddTask?: boolean;
-  subsciption?: Subscription;
+  showAddTask: Observable<boolean>;
 
-  constructor(private uiService: UiService, private router: Router) { 
-    this.subsciption = this.uiService.onToggle().subscribe(
-      (value) => { this.showAddTask = value; }
-    )
+  constructor(private store: Store<{ showAddTask: boolean }>, private router: Router) { 
+    this.showAddTask = store.select('showAddTask');
   }
 
   ngOnInit(): void {
   }
 
   toggleAddTask(): void {
-    this.uiService.toggleAddTask();
+    this.store.dispatch(toggle());
   }
 
   hasRoute(route: string) {
