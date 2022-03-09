@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { appReducer } from './ngrx/app.reducer';
+import { taskReducer } from './ngrx/task.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { TaskEffects } from './ngrx/task.effects';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -33,7 +36,8 @@ import { FooterComponent } from './components/footer/footer.component';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({ showAddTask: appReducer })
+    StoreModule.forRoot({ showAddTask: appReducer, tasks: taskReducer }),
+    EffectsModule.forRoot([TaskEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
